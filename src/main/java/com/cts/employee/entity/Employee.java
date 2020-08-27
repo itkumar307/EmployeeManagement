@@ -16,7 +16,7 @@ public class Employee {
 	
 	@Id
 	@Column(name = "employee_id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int employeeID;
 
 	@Column(name = "first_name")

@@ -7,12 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cts.employee.entity.Department;
 import com.cts.employee.service.DepartmentService;
+
+import ch.qos.logback.classic.Logger;
 
 
 @RestController
@@ -38,6 +39,8 @@ public class DepartmentController {
 		// inserting department
 		@PostMapping("/departments")
 		public void addDepartment(@RequestBody Department department){
+			
+			
 			departmentService.addDepartment(department);
 		}
 
