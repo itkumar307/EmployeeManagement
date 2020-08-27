@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cts.employee.entity.Employee;
 import com.cts.employee.service.EmployeeService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @RestController
 public class EmployeeController {
 
-	//static final Logger logger  = LogManager.getLogger(EmployeeController.class.getName());
+	static final Logger logger  = LogManager.getLogger(EmployeeController.class.getName());
 
 	@Autowired
 	private EmployeeService employeeService;
@@ -27,6 +29,11 @@ public class EmployeeController {
 		return employeeService.getAllEmployees();
 	}
 	
+	@GetMapping("/employees/deptid/{depid}")
+	public List<Employee> getAllEmployeeByDeptId(@PathVariable int depid){
+		return employeeService.getEmployeesByDepID(depid);
+	}
+	
 
 	// inserting employee
 	@PostMapping("/employees")
@@ -34,12 +41,12 @@ public class EmployeeController {
 		employeeService.addEmployee(employee);
 	}
 
-	// TODO salary update
-	//updating employee by id
-	@PutMapping("/employees/{id}")
-	public void updateEmployee(@RequestBody Employee e, @PathVariable int id){
-		employeeService.updateEmployee(e, id);
+	
+	@PutMapping("/employees/updatesalary/{id}")
+	public void updateEmployeeSalary(@RequestBody Employee e, @PathVariable int id){
+		employeeService.updateEmployeeSalary(e.getLatestSalary(), id);
 	}
 	
+
 	
 }

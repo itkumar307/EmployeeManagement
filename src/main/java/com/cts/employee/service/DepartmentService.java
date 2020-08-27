@@ -1,7 +1,6 @@
 package com.cts.employee.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,15 +21,9 @@ public class DepartmentService {
 		return depts;
 	}
 	
-	// fetching department by id
-	public Optional<Department> getDepartment(int id){
-		return departmentRepository.findById(id);
-	}
-	
 	// inserting department
 	public void addDepartment(Department d) {
 		departmentRepository.save(d);
 	}
-	
 	
 }
