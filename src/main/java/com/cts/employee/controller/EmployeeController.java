@@ -2,6 +2,8 @@ package com.cts.employee.controller;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,8 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cts.employee.entity.Employee;
 import com.cts.employee.service.EmployeeService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 @RestController
 public class EmployeeController {

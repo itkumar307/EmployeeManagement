@@ -21,7 +21,7 @@ public interface EmployeeRepository extends CrudRepository<Employee, Integer>{
 	void updateSalary(@Param("salary") String salary , @Param("employeeID") int id);
 	
 	
-	@Query("select e from Employee e where e.department = :deptID")
+	@Query("select e from Employee e where e.department.department_ID = :deptID")
 	List<Employee> getEmployeesByDept(@Param("deptID") int id);
 
 

@@ -12,6 +12,7 @@ public class EmployeeManagementApplication {
 	static final Logger logger = LogManager.getLogger(EmployeeManagementApplication.class.getName());
 
 	public static void main(String[] args) {
+		logger.info("Starting the application");
 		SpringApplication.run(EmployeeManagementApplication.class, args);
 	}
 

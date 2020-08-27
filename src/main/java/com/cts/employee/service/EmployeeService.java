@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cts.employee.entity.Employee;
+import com.cts.employee.exception.NoDataFoundException;
 import com.cts.employee.repository.EmployeeRepository;
 
 // employee service class
@@ -22,16 +23,27 @@ public class EmployeeService {
 		List<Employee> emps = (List<Employee>) employeeRepository.findAll();
 		return emps;
 	}
-	
+
 	@Transactional(readOnly = true)
 	public List<Employee> getEmployeesByDepID(int employeeID) {
 		List<Employee> emps = (List<Employee>) employeeRepository.getEmployeesByDept(employeeID);
+		if(emps.isEmpty()) {
+		throw new NoDataFoundException("Employee is empty");
+		}
 		return emps;
 	}
 
 	// fetching employee by id
 	public Optional<Employee> getEmployee(int id) {
-		return employeeRepository.findById(id);
+
+		Optional<Employee> employeeList = employeeRepository.findById(id);
+
+		if (employeeList.isEmpty()) {
+
+			throw new NoDataFoundException("Employee is empty");
+		}
+		return employeeList;
+
 	}
 
 	// inserting employee
@@ -41,6 +53,14 @@ public class EmployeeService {
 
 	// updating employee by id
 	public void updateEmployeeSalary(String salary, int id) {
+
+		if (!salary.isEmpty()) {
+			if (Integer.parseInt(salary) <= 0) {
+				throw new NoDataFoundException("Employee");
+			}
+		}else {
+			throw new NoDataFoundException("Employee");
+		}
 		employeeRepository.updateSalary(salary, id);
 
 	}
@@ -51,6 +71,5 @@ public class EmployeeService {
 			employeeRepository.save(emp);
 		}
 	}
-	
 
 }
